@@ -2,11 +2,11 @@
  Unit 3 Final Project of Coding 2
  
  <h3>Interaction</h3>
- For the interaction portion of the game, the user will complete the story of the game, as well as possibly minigames. The game will be based on the user interaction portion, which means that the Interaction will be a vital part of the game's success
+ For the interaction portion of the game, the user will complete the story of the game, as well as possibly minigames. The game will be based on the user interaction portion, which means that the Interaction will be a vital part of the games' success
  <h3>Milestone #1: November 22nd, 2019</h3>
  <ul>
   <li>I will create the Idea of my project, and map out the deadlines for each portion of the project</li>
-  <li>I Will start to develop the story of my project, and work to establish how I am going to code each portion of the game</li>
+  <li>I will start to develop the story of my project, and work to establish how I am going to code each portion of the game</li>
  </ul>
  <h3>Milestone #2: December 2nd, 2019</h3>
  <ul>
