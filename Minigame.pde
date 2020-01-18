@@ -14,6 +14,7 @@ class Minigame
  
   Minigame()
   {
+  
     Plane=loadImage("plane.png");
     Plane.resize(100, 100);
     Bomb=loadImage("bomb.png");
@@ -32,11 +33,7 @@ class Minigame
     }
     x=400;
     y=400;
-  }
-
-  void render () 
-  {
-
+    
     background(255, 0, 0);
     image(Plane, jetX, jetY);
 
@@ -71,15 +68,10 @@ class Minigame
       jetY=400;
     }
   }
-
-
-  void keyPressed()
-  {
-
-    // W A S D controls for plane
-
-    if (scene == 3)
+   void keyPressed()
     {
+      if(scene ==3)
+      {
       if (key == 'a')
       {
         jetX-=20;
@@ -98,4 +90,5 @@ class Minigame
       }
     }
   }
+        
 }
