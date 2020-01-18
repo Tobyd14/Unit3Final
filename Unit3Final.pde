@@ -3,6 +3,16 @@ Minim minim;
 AudioPlayer music;
 AudioPlayer deathmusic;
 AudioPlayer minigamemusic;
+PImage Plane;
+PImage Bomb;
+float  jetX;
+float  jetY;
+float  bombX;
+float  bombY;
+float x=400;
+float y=400;
+float Xs [] = new float [5];
+float Ys [] = new float [5];
 //the scene variable is the basis for the game (game holds multiple scenes)
 int scene = 0;
 //this boolean determines which character the player has chosen
@@ -10,7 +20,6 @@ boolean SelectedPlayer1=false;
 boolean SelectedPlayer2=false;
 // Scene and Minigame are the two classes on the program
 Scene s;
-Minigame m;
 boolean death;
 PFont f;
 PImage Logo;
@@ -35,6 +44,24 @@ PImage Player2;
 
 void setup()
 {
+  if (scene==3)
+  {
+
+    jetX=500;
+    jetY=100;
+    if (jetX > width) {
+      jetX=0;
+    }
+    if (jetY > height) {
+      jetY=0;
+    }
+    if (jetX < 1000)
+    {
+      //scene=3;
+    }
+    x=400;
+    y=400;
+  }
   //  if (music.isPlaying()) {
   //  deathmusic.pause();
   // minigamemusic.pause();
@@ -86,6 +113,10 @@ void setup()
   Player2=loadImage("Player2.png");
   Player1.resize(800, 600);
   Player2.resize(800, 600);
+  Plane=loadImage("plane.png");
+  Plane.resize(100, 100);
+  Bomb=loadImage("bomb.png");
+  Bomb.resize(100, 100);
 }
 void draw()
 {
@@ -101,13 +132,11 @@ void draw()
   {
     if (scene==2||scene==4||scene==5||scene==6||scene==7)
     {
-      image(Player2,600,100);
+      image(Player2, 600, 100);
     }
-    
-    
   }
   if (scene==98)
-  // this scene allows the player to select their character
+    // this scene allows the player to select their character
   {
     background(0);
     textFont(f, 30);
@@ -169,7 +198,7 @@ void draw()
     if (mousePressed) {
       if (dist(mouseX, mouseY, 200, 400)<200)
       {
-        scene=4;
+        scene=3;
       }
       if (dist(mouseX, mouseY, 600, 400)<200)
       {
@@ -180,8 +209,41 @@ void draw()
 
   if (scene==3)
   {
-    new Minigame();
+    background(255, 0, 0);
+    image(Plane, jetX, jetY);
+
+    //collisions between plane & bomb
+    for (int i=0; i<5; i++) {
+      image ( Bomb, Xs[i], Ys[i]);
+      Xs[i] = Xs[i] +- 3;
+      if (Xs[i] < 0) {
+        Xs[i] = width;
+      }
+    }
+    //determines when player completes level as well as losing level
+    for (int i=0; i<5; i++)
+    {
+      if (x < Xs[i] + Bomb.width &&
+        x + Bomb.width-85 > Xs[i] &&
+        y < Ys[i] + Bomb.height && 
+        y + Bomb.height-10 > Ys[i])
+      {
+        scene=99;
+      }
+    }
+
+    if (jetX > 1000)
+    {
+
+      scene=4;
+    }
+    if (jetY > 1000)
+    {
+      jetX=400;
+      jetY=400;
+    }
   }
+
   if (scene==4)
   {
     new Scene();
@@ -248,6 +310,28 @@ void draw()
       {
         scene=2;
       }
+    }
+  }
+}
+void keyPressed()
+{
+  if (scene ==3)
+  {
+    if (key == 'a')
+    {
+      jetX-=20;
+    }
+    if (key== 'd')
+    {
+      jetX+=20;
+    }
+    if (key == 's')
+    {
+      jetY-=20;
+    }
+    if (key == 'w')
+    {
+      jetY+=20;
     }
   }
 }
